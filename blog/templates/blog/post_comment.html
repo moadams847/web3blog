@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %} {% block content %}
+
+<!--  -->
+
+{% if not object.comments.all%}
+<p class="text-muted">No comments yet.</p>
+{% else %}
+<h2 class="fs-6 fw-bolder pb-2">Comments</h2>
+
+{% for comment in object.comments.all %}
+<h3>{{comment.author.username}}</h3>
+<p>{{comment.body}}</p>
+<p><small> {{comment.date_posted}} </small></p>
+
+{% endfor %} {% endif %} {% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<h1 style="font-size: 40px; margin-left: 30px" class="p-2">Add Comment</h1>
+
+<div class="container m-5">
+  <form action="" method="POST">
+    {% csrf_token %} {{ form|crispy }}
+    <button type="submit" class="btn btn-dark">Submit comment</button>
+  </form>
+</div>
+
+{% endblock %}

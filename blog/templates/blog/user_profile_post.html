@@ -1,0 +1,68 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+
+{% for profile in profiles %}
+
+<div class="text-md-start text-center">
+    <div class='d-flex'>
+        <img class="rounded-circle w-25 h-25 " src="{{ profile.image.url }}" />
+        <div class='d-flex flex-column align-self-center ms-5'>
+            <h4 class="text-center"> {{ num_post }} </h4>
+            <h4 class="text-center">Posts</h4>
+        </div>
+    </div>
+    <div class="">
+      <h4 class="mb-1">{{ profile.user.username }}</h4>
+      <p class="text-secondary mb-1">{{ profile.bio}}</p>
+    </div>
+
+
+    {% if profile.user == user %}
+
+    <a class="btn btn-dark btn-sm mt-2" href="{% url 'edit_profile' %}"
+      >Edit Profile</a
+    >
+    {% endif %}
+  </div>
+
+
+  {% endfor %}
+
+
+    {% for post in posts %}
+    <div class="d-flex flex-row mt-5">
+        <img
+          class="avatar me-3"
+          src="{{ post.author.profile.image.url}}"
+          alt="{{ post.author.username }}"
+        />
+      
+        <div class="align-self-center">
+          <h6  class="d-inline me-1"> <a class='text-decoration-none text-dark' href="{% url 'user-posts' post.author.username %}"> {{ post.author }}</a></h6>
+          <h6 class="text-muted d-inline me-1">{{ post.date_posted|date:"M d" }}</h6>
+          <h6 class="text-muted d-inline bg-light py-1 px-2 rounded-pill">
+            {{ post.category.name }}
+          </h6>
+        </div>
+      </div>
+      
+      <h2 class="mt-2">
+        <a
+          class="text-dark fs-4 fw-bolder text-decoration-none"
+          href="{% url 'post-detail' post.id %}"
+        >
+          {{ post.title }}
+        </a>
+      </h2>
+      <p class="">
+        <a
+          class="text-dark text-decoration-none text-muted"
+          href="{% url 'post-detail' post.id %}"
+        >
+          {{ post.teaser }}
+        </a>
+      </p>
+    {% endfor %}
+   
+{% endblock content %}
