@@ -8,41 +8,21 @@
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %} {% comment %} {% endcomment %}
         <!--  -->
-        {% for profile in profiles %}
 
-        <div class="text-md-start text-center">
-          <div class="d-flex">
-            <img
-              class="rounded-circle w-25 h-25"
-              src="{{ profile.image.url }}"
-            />
-            <div class="d-flex flex-column align-self-center ms-5">
-              <h4 class="text-center">{{ num_post }}</h4>
-              <h4 class="text-center">Posts</h4>
-            </div>
-          </div>
-          <div class="">
-            <h4 class="mb-1">{{ profile.user.username }}</h4>
-            <p class="text-secondary mb-1">{{ profile.bio}}</p>
-          </div>
+        <h1 class="fs-3 pb-2 fw-bolder border-bottom border-1">{{tag}}</h1>
 
-          {% if profile.user == user %}
-
-          <a class="btn btn-dark btn-sm mt-2" href="{% url 'edit_profile' %}"
-            >Edit Profile</a
-          >
-          {% endif %}
-        </div>
-
-        {% endfor %}
-        <!--  -->
         {% for post in posts %}
         <div class="d-flex flex-row mt-5">
-          <img
-            class="avatar me-3"
-            src="{{ post.author.profile.image.url}}"
-            alt="{{ post.author.username }}"
-          />
+          <a
+            class="text-decoration-none text-dark"
+            href="{% url 'user-posts' post.author.username %}"
+          >
+            <img
+              class="avatar me-3"
+              src="{{ post.author.profile.image.url}}"
+              alt="{{ post.author.username }}"
+            />
+          </a>
 
           <div class="align-self-center">
             <h6 class="d-inline me-1">
@@ -78,6 +58,8 @@
             {{ post.teaser }}
           </a>
         </p>
+        {% empty %}
+        <h3>No Posts</h3>
         {% endfor %}
       </div>
       <div class="col-md-5 py-4 ps-md-5 d-none d-md-block">

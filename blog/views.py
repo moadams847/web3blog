@@ -19,6 +19,11 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 5
     
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context  
+    
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_profile_post.html'
@@ -26,16 +31,28 @@ class UserPostListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        Post.objects.filter(author=user).order_by('-date_posted') 
         return Post.objects.filter(author=user).order_by('-date_posted') 
-        
-     
+               
     def get_context_data(self, **kwargs):
         context = super(UserPostListView, self).get_context_data(**kwargs)
         context['profiles'] = Profile.objects.filter(user__username=self.kwargs.get('username'))
         context['num_post'] = Post.objects.filter(author__username=self.kwargs.get('username')).count
         return context   
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'blog/category_post.html'
+    context_object_name = 'posts'
 
+    def get_queryset(self):
+        tag = get_object_or_404(Category, name=self.kwargs.get('name'))
+        return Post.objects.filter(category=tag).order_by('-date_posted') 
+    
+    def get_context_data(self, **kwargs):
+        context = super(CategoryListView, self).get_context_data(**kwargs)
+        context['tag'] = self.kwargs.get('name')
+        return context   
+    
+    
 class PostDetailView(DetailView):
     model = Post
 

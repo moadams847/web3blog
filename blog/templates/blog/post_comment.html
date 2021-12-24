@@ -2,14 +2,72 @@
 
 <!--  -->
 
-{% if not object.comments.all%}
-<p class="text-muted">No comments yet.</p>
-{% else %}
-<h2 class="fs-6 fw-bolder pb-2">Comments</h2>
+<section class="">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-7 py-5 pe-2">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %} {% if not object.comments.all%}
+        <p class="text-muted">No comments yet.</p>
+        {% else %}
+        <h2 class="fs-6 fw-bolder pb-2">Comments</h2>
 
-{% for comment in object.comments.all %}
-<h3>{{comment.author.username}}</h3>
-<p>{{comment.body}}</p>
-<p><small> {{comment.date_posted}} </small></p>
+        {% for comment in object.comments.all %}
+        <h3>{{comment.author.username}}</h3>
+        <p>{{comment.body}}</p>
+        <p><small> {{comment.date_posted}} </small></p>
 
-{% endfor %} {% endif %} {% endblock content %}
+        {% endfor %} {% endif %}
+      </div>
+      <div class="col-md-5 py-4 ps-md-5 d-none d-md-block">
+        <div class="sticky-md-top">
+          <!-- 1 -->
+          <div class="mt-4"></div>
+
+          <!-- 2 -->
+          <div class="mt-4"></div>
+          <!-- 3 -->
+          <div class="mt-4"></div>
+          <!-- 4 -->
+
+          <div class="mt-4"></div>
+          <!-- 5 -->
+
+          <div class="mt-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+<section class="">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-7 py-5 pe-2">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %}
+      </div>
+      <div class="col-md-5 py-4 ps-md-5 d-none d-md-block">
+        <div class="sticky-md-top">
+          <!-- 1 -->
+          <div class="mt-4"></div>
+
+          <!-- 2 -->
+          <div class="mt-4"></div>
+          <!-- 3 -->
+          <div class="mt-4"></div>
+          <!-- 4 -->
+
+          <div class="mt-4"></div>
+          <!-- 5 -->
+
+          <div class="mt-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

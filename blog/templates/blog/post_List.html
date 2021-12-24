@@ -1,6 +1,16 @@
 {% extends "blog/base.html" %} {% block content %}
 
-<h1 class="fs-6 pb-2 text-uppercase fw-bolder border-bottom border-1">
+
+<section class="">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-7 py-5 pe-2">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %}
+
+
+        <h1 class="fs-6 pb-2 text-uppercase fw-bolder border-bottom border-1">
   Recommended for you
 </h1>
 
@@ -20,7 +30,11 @@
     <h6 class='d-inline me-1'> <a class='text-decoration-none text-dark' href="{% url 'user-posts' post.author.username %}"> {{ post.author }}</a></h6>
     <h6 class="text-muted d-inline me-1">{{ post.date_posted|date:"M d" }}</h6>
     <h6 class="text-muted d-inline bg-light py-1 px-2 rounded-pill">
-      {{ post.category.name }}
+
+      <a href="{% url 'category-posts' post.category.name %}" 
+                   class="text-decoration-none text-dark"> {{ post.category.name }} 
+                </a>
+
     </h6>
   </div>
 </div>
@@ -67,5 +81,33 @@
 
     {% endif %}
 
+      </div>
+      <div class="col-md-5 py-4 ps-md-5 d-none d-md-block">
+        <div class="sticky-md-top">
+          <h2 class="fs-6 fw-bolder pb-2">Recommended topics</h2>
+          <div class="d-flex flex-row flex-wrap">
+
+            {% for tag in categories %}
+
+              <div class="bg-light py-1 px-3 rounded-pill fs-6 m-1"> 
+                <a href="{% url 'category-posts' tag.name %}" 
+                   class="text-decoration-none text-dark"> {{ tag.name }} 
+                </a>
+            </div>  
+
+            {% endfor %}
+
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 {% endblock content %}
+

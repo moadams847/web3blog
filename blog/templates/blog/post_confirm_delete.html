@@ -1,22 +1,55 @@
 {% extends "blog/base.html" %} {% block content %}
-<div class="">
-  <form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Delete Post</legend>
-      <h2>
-        Are you sure you want to delete the post:
-        <span class="bg-info">{{ object.title }}</span>
-      </h2>
-    </fieldset>
-    <div class="form-group">
-      <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-      <a
-        class="btn btn-outline-secondary"
-        href="{% url 'post-detail' object.id %}"
-        >Cancel</a
-      >
+
+<section class="">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-7 py-5 pe-2">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %}
+        <div class="">
+          <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Delete Post</legend>
+              <h2>
+                Are you sure you want to delete the post:
+                <span class="bg-info">{{ object.title }}</span>
+              </h2>
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-danger" type="submit">
+                Yes, Delete
+              </button>
+              <a
+                class="btn btn-outline-secondary"
+                href="{% url 'post-detail' object.id %}"
+                >Cancel</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-5 py-4 ps-md-5 d-none d-md-block">
+        <div class="sticky-md-top">
+          <!-- 1 -->
+          <div class="mt-4"></div>
+
+          <!-- 2 -->
+          <div class="mt-4"></div>
+          <!-- 3 -->
+          <div class="mt-4"></div>
+          <!-- 4 -->
+
+          <div class="mt-4"></div>
+          <!-- 5 -->
+
+          <div class="mt-4"></div>
+        </div>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+</section>
+
 {% endblock content %}
+
