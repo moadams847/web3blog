@@ -72,12 +72,14 @@
             {% endif %}
           </ul>
 
-          <form class="d-flex">
+          <form method="GET" class="d-flex">
             <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              name="post-search"
+              value="{{search_input}}"
             />
             <button class="btn btn-dark" type="submit">Search</button>
           </form>
@@ -87,8 +89,6 @@
     <!-- main section -->
 
     {% block content %}{% endblock %}
-
-   
 
     <!-- Optional JavaScript; choose one of the two! -->
 

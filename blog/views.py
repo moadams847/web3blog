@@ -22,8 +22,13 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        return context  
-    
+        context['categories'] = Category.objects.all()
+        
+        search_input = self.request.GET.get('post-search') or ''
+        if search_input:
+            context['posts'] = Post.objects.filter(title__startswith=search_input)
+            context['search_input'] = search_input
+        return context
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_profile_post.html'
