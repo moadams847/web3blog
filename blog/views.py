@@ -29,6 +29,7 @@ class PostListView(ListView):
             context['posts'] = Post.objects.filter(title__startswith=search_input)
             context['search_input'] = search_input
         return context
+    
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_profile_post.html'

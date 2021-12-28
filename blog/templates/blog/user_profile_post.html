@@ -17,8 +17,8 @@
               src="{{ profile.image.url }}"
             />
             <div class="d-flex flex-column align-self-center ms-5">
-              <h4 class="text-center">{{ num_post }}</h4>
-              <h4 class="text-center">Posts</h4>
+              <h4 class="text-center">{{num_post}}</h4>
+              <h4 class="text-center">Post{{num_post|pluralize:"s"}}</h4>
             </div>
           </div>
           <div class="">
