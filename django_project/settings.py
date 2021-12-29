@@ -27,8 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (config('DEBUG_VALUE') == 'TRUE')
-
+# DEBUG = (config('DEBUG_VALUE') == 'TRUE')
+DEBUG = True
 
 ALLOWED_HOSTS = ['web3blogapp.herokuapp.com']
 
