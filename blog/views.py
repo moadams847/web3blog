@@ -11,6 +11,7 @@ from .models import Post, Comment, Category
 from django.contrib.auth.models import User
 from .forms import CommentForm
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 from users.models import Profile
 
 class PostListView(ListView):
@@ -104,7 +105,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
- 
+@login_required
 def add_comment(request, pk):    
     eachPost = get_object_or_404(Post,id=pk)
     form = CommentForm(instance=eachPost)
