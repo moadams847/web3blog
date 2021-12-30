@@ -18,6 +18,7 @@ class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    template_name = 'blog/post_list.html'    #<app>/<model>_<viewtype>.html
     paginate_by = 5
     
     def get_context_data(self, **kwargs):
